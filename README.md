@@ -112,9 +112,11 @@ dokku elasticsearch:link lolipop playground
 # and the following will be set on the linked application by default
 #
 #   ELASTICSEARCH_URL=http://dokku-elasticsearch-lolipop:9200
+#   JDBC_ELASTICSEARCH_URL=http://dokku-elasticsearch-lolipop:9200?user=&password=
 #
 # NOTE: the host exposed here only works internally in docker containers. If
 # you want your container to be reachable from outside, you should use `expose`.
+# As well, we shall omit the JDBC url from all following examples for brevity.
 
 # another service can be linked to your app
 dokku elasticsearch:link other_service playground
