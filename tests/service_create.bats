@@ -13,9 +13,10 @@ load test_helper
 
 
 @test "($PLUGIN_COMMAND_PREFIX:create) debug" {
-    local tmpid=$(docker create "elasticsearch:5.6.14")
-    docker cp "$tmpid:/usr/share/elasticsearch/config/" "$SERVICE_HOST_ROOT/" -
-    docker rm -v "$tmpid"
+    TMPID=$(docker create "elasticsearch:5.6.14")
+    echo "TMPID is $TMPID"
+    docker cp "$TMPID:/usr/share/elasticsearch/config/" "$SERVICE_HOST_ROOT/" -
+    docker rm -v "$TMPID"
 }
 
 @test "($PLUGIN_COMMAND_PREFIX:create) creates version 5.6.14" {
