@@ -13,11 +13,12 @@ load test_helper
 
 
 @test "($PLUGIN_COMMAND_PREFIX:create) debug" {
-    mv "$BIN_STUBS/docker-stub" "$BIN_STUBS/docker"
+
+    mv "tests/bin/docker" "tests/bin/docker-stub"
     export TMPID=$(docker create "elasticsearch:5.6.14")
     docker cp "${TMPID}:/usr/share/elasticsearch/config/" -
     docker rm -v "$TMPID"
-    mv "$BIN_STUBS/docker" "$BIN_STUBS/docker-stub"
+    mv "tests/bin/docker-stub" "tests/bin/docker"
 }
 
 @test "($PLUGIN_COMMAND_PREFIX:create) creates version 5.6.14" {
