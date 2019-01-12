@@ -74,7 +74,7 @@ service_create_container() {
   else
     dokku_log_info2 "Extracting config files"
     local tmpid=$(docker create "$PLUGIN_IMAGE:$PLUGIN_IMAGE_VERSION")
-    docker cp "$tmpid:/usr/share/elasticsearch/config/" "$SERVICE_HOST_ROOT/"
+    docker cp "$tmpid:/usr/share/elasticsearch/config/" "$SERVICE_HOST_ROOT/" -
     docker rm -v "$tmpid"
     if [[ "$ELASTICSEARCH_MAJOR_VERSION" -eq "6" ]]; then
       sed -i.bak 's#Xms2g#Xms512m#g; s#Xmx2g#Xmx512m#g' "$SERVICE_HOST_ROOT/config/jvm.options"
