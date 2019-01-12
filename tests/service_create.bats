@@ -11,6 +11,13 @@ load test_helper
   assert_contains "${lines[*]}" "Please specify a name for the service"
 }
 
+
+@test "($PLUGIN_COMMAND_PREFIX:create) debug" {
+    local tmpid=$(docker create "elasticsearch:5.6.14")
+    docker cp "$tmpid:/usr/share/elasticsearch/config/" "$SERVICE_HOST_ROOT/" -
+    docker rm -v "$tmpid"
+}
+
 @test "($PLUGIN_COMMAND_PREFIX:create) creates version 5.6.14" {
   export ELASTICSEARCH_IMAGE_VERSION="5.6.14"
   run dokku "$PLUGIN_COMMAND_PREFIX:create" l
