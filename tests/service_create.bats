@@ -13,7 +13,7 @@ load test_helper
 
 
 @test "($PLUGIN_COMMAND_PREFIX:create) debug" {
-    TMPID=$(docker create "elasticsearch:5.6.14")
+    export TMPID=$(docker create "elasticsearch:5.6.14")
     echo "TMPID is $TMPID"
     docker cp "$TMPID:/usr/share/elasticsearch/config/" "$SERVICE_HOST_ROOT/" -
     docker rm -v "$TMPID"
